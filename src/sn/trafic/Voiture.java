@@ -4,11 +4,27 @@ public class Voiture implements Runnable{
 	
 	String nom;
 	Voie v;	
+	String direction;
+
+	public Voiture(String nom, Voie v, String d) {
+		super();
+		this.nom = nom;
+		this.v = v;
+		this.direction = d;
+	}
 
 	public Voiture(String nom, Voie v) {
 		super();
 		this.nom = nom;
 		this.v = v;
+	}
+	
+	public String getDirection() {
+		return direction;
+	}
+
+	public void setDirection(String direction) {
+		this.direction = direction;
 	}
 
 	public String getNom() {
@@ -31,10 +47,17 @@ public class Voiture implements Runnable{
 		// TODO Auto-generated method stub
 
 		Voie v =  new Voie();
-		Thread MesVoitures[] = new Thread[5];
+		Thread MesVoituresd[] = new Thread[5];
+		Thread MesVoituresg[] = new Thread[5];
 		for (int i =0; i< 5; i++){
-		    MesVoitures[i]= new Thread(new Voiture(String.format("Voiture %d ", i) , v));
-		    MesVoitures[i].start();}
+		    MesVoituresd[i]= new Thread(new Voiture(String.format("Voiture droite %d ", i) , v, "d"));
+		    MesVoituresd[i].start();
+		    
+		    MesVoituresg[i]= new Thread(new Voiture(String.format("Voiture gauche %d ", i) , v, "g"));
+		    MesVoituresg[i].start();
+		    }
+		
+		
 		}
 
 	@Override
@@ -61,7 +84,7 @@ public class Voiture implements Runnable{
 		while(!(this.v.accept(this))) {
 //		    Thread.sleep((long)  (1000* Math.random()));
 			Thread.sleep(10000);
-		    System.out.format("[%s]  : Je redemande à rentrer  \n", this.nom);
+		    System.out.format("[%s]  :direction [%s] -> Je redemande à rentrer  \n", this.nom, this.direction);
 		}
 	}
 }
