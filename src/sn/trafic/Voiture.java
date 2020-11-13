@@ -82,6 +82,18 @@ public class Voiture extends JPanel implements Runnable{
 		this.v = v;
 	}
 
+	public void Trafic(int i, int j, Voie v) {
+		Thread MesVoituresd[] = new Thread[i];
+		Thread MesVoituresg[] = new Thread[j];
+		for (int c =0; c< 5; i++){
+		    MesVoituresd[i]= new Thread(new Voiture(String.format("Voiture droite %d ", i) , v, "d"));
+		    MesVoituresd[i].start();
+		    
+		    MesVoituresg[i]= new Thread(new Voiture(String.format("Voiture gauche %d ", i) , v, "g"));
+		    MesVoituresg[i].start();
+		 }
+	}
+	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		Route r = new Route();
@@ -139,6 +151,9 @@ public class Voiture extends JPanel implements Runnable{
 		g.setColor(Color.GRAY);
 		g.fillOval(190, 200, 25, 25);
 		g.fillOval(720, 200, 25, 25);
+		g.setColor(Color.WHITE);
+		g.drawLine(670, 170, 670, 250);
+		g.drawLine(280, 170, 280, 250);
 		
 		try{
 			Image img= ImageIO.read(new File("images/voiture.png"));
@@ -148,13 +163,16 @@ public class Voiture extends JPanel implements Runnable{
 			System.out.println(e);
 		}
 		
+		newVehicule(780, 150, g);
+	}
+	
+	void newVehicule(int x,int y, Graphics g) {
 		try{
 			Image img2= ImageIO.read(new File("images/voitureg.png"));
-			g.drawImage(img2,780,160,this);
+			g.drawImage(img2,x,y,this);
 		}catch(IOException e){
 			e.printStackTrace();
 			System.out.println(e);
 		}
 	}
-	
 }
