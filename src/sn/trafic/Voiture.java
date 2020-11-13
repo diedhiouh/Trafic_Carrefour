@@ -96,15 +96,15 @@ public class Voiture extends JPanel implements Runnable{
 	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		Route r = new Route();
+//		Route r = new Route();
 		Voie v =  new Voie();
 		Thread MesVoituresd[] = new Thread[5];
 		Thread MesVoituresg[] = new Thread[5];
 		for (int i =0; i< 5; i++){
-		    MesVoituresd[i]= new Thread(new Voiture(String.format("Voiture droite %d ", i) , v, "d"));
+		    MesVoituresd[i]= new Thread(new Voiture(String.format("Voiture droite %d ", i) , v, "droite"));
 		    MesVoituresd[i].start();
 		    
-		    MesVoituresg[i]= new Thread(new Voiture(String.format("Voiture gauche %d ", i) , v, "g"));
+		    MesVoituresg[i]= new Thread(new Voiture(String.format("Voiture gauche %d ", i) , v, "gauche"));
 		    MesVoituresg[i].start();
 		 }
 		
@@ -163,7 +163,7 @@ public class Voiture extends JPanel implements Runnable{
 			System.out.println(e);
 		}
 		
-		newVehicule(780, 150, g);
+		newVehicule(-postX+680, postY-50, g);
 	}
 	
 	void newVehicule(int x,int y, Graphics g) {

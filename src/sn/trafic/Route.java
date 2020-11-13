@@ -37,13 +37,10 @@ public class Route extends JFrame{
 			for(int i=0;i<a;i++){
 		
 				if(true){
-					voie.setPostX(X+=10);
-					voie1.setPostX(X+=10);
-					voie.repaint();
-					voie1.repaint();
-					
+					voie.setPostX(X+=6);
+					voie.repaint();					
 					if(X>=a){
-						break;
+						voie.setPostX(-10);
 					}
 				}
 
